@@ -40,7 +40,7 @@ function getActivities() {
       id: act.id,
       athlete: act.athlete.id,
       name: act.name,
-      distance: act.distance,
+      distance: act.distance / 1000,
       movingTime: act.moving_time,
       elapsedTime: act.elapsed_time,
       elevationGain: act.total_elevation_gain,
