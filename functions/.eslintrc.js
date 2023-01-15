@@ -27,6 +27,6 @@ module.exports = {
     quotes: ["error", "double"],
     "import/no-unresolved": 0,
     "require-jsdoc": 0,
-    "prefer-promise-reject-errors": 0
+    "prefer-promise-reject-errors": 0,
   },
 };

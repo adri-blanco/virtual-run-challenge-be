@@ -3,5 +3,5 @@ export interface GetData {
 }
 
 export interface CreateData {
-  code: string,
+  code: string;
 }

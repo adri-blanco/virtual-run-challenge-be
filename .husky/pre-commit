@@ -2,5 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 cd functions
-npm run prettier
-npm run lint
+npx lint-staged

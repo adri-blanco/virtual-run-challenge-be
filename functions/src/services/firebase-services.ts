@@ -2,12 +2,12 @@ import { db } from "../config/firebase";
 import { Collection } from "../types/Firebase.types";
 
 type Data = {
-  id?: string | number,
-  [key: string]: string | number | boolean | undefined,
+  id?: string | number;
+  [key: string]: string | number | boolean | undefined;
 };
 
 async function create(collection: Collection, data: Data) {
-  if(data.id) {
+  if (data.id) {
     const { id, ...rest } = data;
     db.collection(collection).doc(id.toString()).set(rest);
   } else {
@@ -22,11 +22,8 @@ async function createAll(collection: Collection, data: Data[]) {
 }
 
 function get(collection: Collection, id: number | string) {
-  console.log(collection, id)
-  return db
-    .collection(collection)
-    .doc(id.toString())
-    .get()
+  console.log(collection, id);
+  return db.collection(collection).doc(id.toString()).get();
 }
 
 export default {

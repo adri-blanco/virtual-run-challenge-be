@@ -10,4 +10,4 @@ function getParams(params: Params): string {
 
 export default {
   getParams,
-}
+};
