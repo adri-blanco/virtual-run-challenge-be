@@ -1,8 +1,11 @@
 import * as express from "express";
+import * as cors from "cors";
 import Controllers, { ControllersType } from "./controllers";
 import { AppErrorType } from "./utils/AppError";
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 function getData(req: express.Request) {
   return {

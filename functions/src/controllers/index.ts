@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import runner from "./runner-controller";
+import athlete from "./athlete-controller";
 
-export type ControllersType = "runner";
+export type ControllersType = "athlete";
 export type ControllerOperationsType = {
   get?: (data: any) => Promise<object>;
   create?: (data: any) => Promise<object>;
@@ -11,5 +11,5 @@ export type ControllerOperationsType = {
 };
 
 export default {
-  runner,
+  athlete,
 };

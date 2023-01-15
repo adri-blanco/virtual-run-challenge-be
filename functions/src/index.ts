@@ -1,3 +1,5 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import app from "./server";
 
 if (process.env.NODE_ENV === "local") {
