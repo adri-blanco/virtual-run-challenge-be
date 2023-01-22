@@ -14,7 +14,6 @@ function loginWithCode(code: string) {
 
   return StravaAxios.post<any, AuthTokenResponse>(`/oauth/token?${utils.getParams(params)}`)
     .then((info) => {
-      console.log(info);
       return {
         accessToken: info.access_token,
         refreshToken: info.refresh_token,
@@ -26,7 +25,6 @@ function loginWithCode(code: string) {
       };
     })
     .catch((err) => {
-      console.log(err);
       if (err.errors[0].field === "code" && err.errors[0].code === "invalid") {
         throw appError("Code is invalid", err.status, err.errors);
       }
@@ -46,6 +44,7 @@ function getActivities() {
       elevationGain: act.total_elevation_gain,
       sportType: act.sport_type,
       startDate: act.start_date,
+      startDateUnix: new Date(act.start_date).getTime(),
       avgSpeed: fromMeterPerSecondToKmHour(act.average_speed),
       maxSpeed: fromMeterPerSecondToKmHour(act.max_speed),
       avgCadence: Math.ceil(act.average_cadence * 2),

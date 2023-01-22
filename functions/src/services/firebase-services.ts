@@ -1,5 +1,5 @@
 import { db } from "../config/firebase";
-import { Collection } from "../types/Firebase.types";
+import { Collection, Where } from "../types/Firebase.types";
 
 type Data = {
   id?: string | number;
@@ -22,12 +22,36 @@ async function createAll(collection: Collection, data: Data[]) {
 }
 
 function get(collection: Collection, id: number | string) {
-  console.log(collection, id);
   return db.collection(collection).doc(id.toString()).get();
+}
+
+type GetAllFunction =
+  | FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>
+  | FirebaseFirestore.Query<FirebaseFirestore.DocumentData>;
+
+function getAll(collection: Collection, whereConditions?: Where[], orderBy?: string) {
+  let func: GetAllFunction = db.collection(collection);
+
+  if (whereConditions) {
+    whereConditions.forEach((w) => {
+      func = func.where(w.field, w.op, w.value);
+    });
+  }
+
+  if (orderBy) {
+    func = func.orderBy(orderBy);
+  }
+
+  return func.get().then((docs) => {
+    const items: object[] = [];
+    docs.forEach((item) => items.push(item.data()));
+    return items;
+  });
 }
 
 export default {
   create,
   createAll,
   get,
+  getAll,
 };

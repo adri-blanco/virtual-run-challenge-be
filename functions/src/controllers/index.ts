@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import athlete from "./athlete-controller";
+import activity from "./activity-controller";
 
 export type ControllersType = "athlete";
 export type ControllerOperationsType = {
@@ -11,5 +12,6 @@ export type ControllerOperationsType = {
 };
 
 export default {
+  activity,
   athlete,
 };
