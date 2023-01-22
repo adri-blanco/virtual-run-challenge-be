@@ -1,15 +1,15 @@
 import * as admin from "firebase-admin";
 
-const privatekey = process.env.FIREBASE_PRIVATE_KEY;
+const privatekey = process.env.APP_FIREBASE_PRIVATE_KEY;
 
 if (privatekey) {
   admin.initializeApp({
     credential: admin.credential.cert({
       privateKey: privatekey.replace(/\\n/g, "\n"),
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      projectId: process.env.APP_FIREBASE_PROJECT_ID,
+      clientEmail: process.env.APP_FIREBASE_CLIENT_EMAIL,
     }),
-    databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`,
+    databaseURL: `https://${process.env.APP_FIREBASE_PROJECT_ID}.firebaseio.com`,
   });
 }
 
